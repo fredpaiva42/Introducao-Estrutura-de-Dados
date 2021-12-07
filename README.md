@@ -36,8 +36,15 @@
 - Uma variável representa um espaço na memória para armazenar determinado tipo de dado.
 - O nome da variável serve de referência ao dado armazenado no espaço de memória da variável.
 - O tipo da variável determina a natureza do dado que será armazendo.
-- Tipos básicos:
-  - char — espaço que ocupa (**1 byte**) — tamanho
-  - short int (ou só short)
-  - int
-  - long int (ou só long)
+### Tipos básicos:
+| tipo      | tamanho             | representatividade                 |
+|-----------|---------------------|------------------------------------|
+| char      | **1 byte**          | **-128 a 127**                     |
+| short int | **2 bytes**         | **-32 768 a 32 767**               |
+| int       | short <=int <= long | short <=int <= long                |
+| long int  | **4 bytes**         | **-2 147 483 648 a 2 147 483 647** |
+| float     | **4 bytes**         | **+- 10^(-38) a 10^(38)**          |
+| double    | **8 bytes**         | **+- 10^(-308) a 10^(308)**        |
+
+- Obs: se quisermos modifica-los para representar apenas valores positivos basta colocarmos antes **unsigned**.
+
