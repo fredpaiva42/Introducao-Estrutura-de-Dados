@@ -15,6 +15,7 @@
 - Como computadores são máquinas capazes de realizar cálculos complicados de forma muityo eficinete, dividir um problema complexo em diversos porblemas simples é uma estratégia muito usada e muito recomendada.
 
 ### Representação de valores em computadores:
+- Os computadores trabalham na base binária.
 - Um **byte** é composto por 8 bits.
 
 ### Ciclo de Desenvolvimento:
