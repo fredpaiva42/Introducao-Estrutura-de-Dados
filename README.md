@@ -7,5 +7,6 @@
 - **Programar** um computador significa desenvolver uma sequência de instuções que executa uma tarefa específica, produzindo o resultado esperado.
 
 Principais elementos de um computador:
-
-<img align="center" src=".\img\principais elementos de um computador.jpg"/>
+<p align="center">
+    <img src=".\img\principais elementos de um computador.jpg" alt="Principais elementos de um computador"/>
+</p>
