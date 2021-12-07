@@ -8,4 +8,4 @@
 
 Principais elementos de um computador:
 
-<img align="center" src="C:\Users\fredm\OneDrive\Listas\Introducao-Estrutura-de-Dados\img\principais elementos de um computador.jpg"/>
+<img align="center" src="\img\principais elementos de um computador.jpg"/>
