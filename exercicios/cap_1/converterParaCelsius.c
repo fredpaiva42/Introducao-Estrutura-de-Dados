@@ -1,6 +1,6 @@
 # include <stdio.h>
 
-int main(void){
+int conversorParaCelsius(void){
     float f;
 
     printf("Entre com a temperatura em fahrenheit:");
