@@ -52,7 +52,7 @@
     int a, b;
     a = (int) 3.5;
     b = (int) 3.5 % 2;
-- ```
+```
 
 ## Aprendendo-C
 
