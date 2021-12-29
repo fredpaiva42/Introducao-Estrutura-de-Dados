@@ -2,7 +2,7 @@
 
 ## 1 — Introdução à programação
 
-- O computador é uma máquina capaz de manipular informações processando sequeências de instruções.
+- O computador é uma máquina capaz de manipular informações processando sequências de instruções.
 
 - **Programar** um computador significa desenvolver uma sequência de instuções que executa uma tarefa específica, produzindo o resultado esperado.
 
@@ -12,7 +12,7 @@
 </p>
 
 
-- Como computadores são máquinas capazes de realizar cálculos complicados de forma muityo eficinete, dividir um problema complexo em diversos porblemas simples é uma estratégia muito usada e muito recomendada.
+- Como computadores são máquinas capazes de realizar cálculos complicados de forma muito eficiente, dividir um problema complexo em diversos porblemas simples é uma estratégia muito usada e muito recomendada.
 
 ### Representação de valores em computadores:
 - Os computadores trabalham na base binária.
@@ -47,6 +47,12 @@
 | double    | **8 bytes**         | **+- 10^(-308) a 10^(308)**        |
 
 - Obs: se quisermos modifica-los para representar apenas valores positivos basta colocarmos antes **unsigned**.
+- O porgramador pode requisitar uma conversão de tipo atraés do uso do operador de molde de tipo (operador cast), por exemplo:
+```c
+    int a, b;
+    a = (int) 3.5;
+    b = (int) 3.5 % 2;
+- ```
 
 ## Aprendendo-C
 
@@ -67,6 +73,13 @@ Em C para usarmos as funções de entrada e saída é necessário importar a bib
 - Obs 6: Tudo que começa com **#** em C é chamado de **diretiva**.
 
 - Obs 7: **Continue** ele pula direto para a próxima iteração.
+
+## Compilador
+<img align="center" src="https://slideplayer.com.br/slide/17025453/98/images/10/Processo+de+compila%C3%A7%C3%A3o.jpg" alt="imagem processo de compilação">
+
+**Explicação de forma resumida:**
+O compilador faz o processo de tradução do nosso programa.c escrito numa **linguagem de alto nível** (capaz de seres humanos compreenderem) e passa esse programa para **linguagem de máquina** (linguagem de baixo nível) que é a linguagem que o computador é capaz de entender, logo após esse processo de compilação é gerado um **executável** sendo o que nos permite rodar o nosso programa.
+
 
 ## Importação
 Importações em C devem ser feitas da seguinte maneira:
@@ -125,6 +138,31 @@ A declaração de uma variável reserva um espaço na memória para armazenar um
 
 - Para que uma variável seja impressa pelo `printf()` é preciso fazer o uso de máscara (`%d - int`, `%f - float`, `%c - char`,...) indicando o tipo da variável e em seguida apos uma **,** passar o nome da variável, ficando assim: `printf("Você tem %d anos!", idade);`.
 
+## Função printf
+A função printf posiibilita a saída de textos e valores (sejam eles constantes, variáveis ou resultados de expressões) segundo esse formato:
+```C
+    printf(formato, lista de constantes/variáveis/expressões...);
+```
+- O primeiro parâmetro é uma cadeia de carcteres delimitada com aspas que especifica o texto e o formato de saída.
+- Para cada valor que se deseja imprimir, deve haver um especificador de formato. os especificadores variam com o tipo do valor e a precisão que eles sejam impressos. Estes especificadores são precedidos pelo caractere `%`.
+- Se quisermos imprimir porcentagem é precico colocar `%%`.
+- É possível especificar também o tamanho dos campos.
+<p align="center">
+    <img src="./img/tamanho dos campos.jpg" alt="Tamanho dos campos"/>
+</p>
+
+```c
+    printf("%d %g\n", 33, 5.3); /*resulta em 33 5.3*/
+    
+    printf("Inteiro = %d  Real = %g\n", 33, 3.5); /* Inteiro = 33  Real = 5.3*/
+```
+<p align="center">
+    <img src="./img/especificadores de formato.jpg" alt="Tabela com todos os especificadores"/>
+</p>
+<p align="center">
+    <img src="./img/caracteres de escape.jpg" alt="Caracteres de escape"/>
+</p>
+
 ## Função scanf
 Assim como o **printf** a função **scanf** recebe dois parâmetros, a máscara indicando o tipo do dado que vai ser recebido e `&nomeVariavel` que atribui o dado recebido pelo teclado a variável que vem logo após o **&**.
 - o **&** indica o endereço de memória da variável como o espaço da memória no qual será armazendo o valor capturado.
@@ -134,11 +172,9 @@ Assim como o **printf** a função **scanf** recebe dois parâmetros, a máscara
     printf("Digite um número de 1 a 10: ");
     scanf("%d",&num);
 ```
-## Compilador
-<img align="center" src="https://slideplayer.com.br/slide/17025453/98/images/10/Processo+de+compila%C3%A7%C3%A3o.jpg" alt="imagem processo de compilação">
-
-**Explicação de forma resumida:**
-O compilador faz o processo de tradução do nosso programa.c escrito numa **linguagem de alto nível** (capaz de seres humanos compreenderem) e passa esse programa para **linguagem de máquina** (linguagem de baixo nível) que é a linguagem que o computador é capaz de entender, logo após esse processo de compilação é gerado um **executável** sendo o que nos permite rodar o nosso programa.
+<p align="center">
+    <img src="./img/especificadores de formato função scanf.jpg" alt="especificadores de formato função scanf"/>
+</p>
 
 ## Operadores
 Em realação aos operadores temos dois tipos, os **unários e os binários**, a diferença entre eles é que os operadores binários operam sobre dois operandos.
