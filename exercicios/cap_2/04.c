@@ -7,7 +7,7 @@
 
 #define UM_RAD_GRAUS 57.29578
 
-int main(void) {
+int Ex04Cap2(void) {
     float anguloRad, graus, segundos;
     int minutos;
 
