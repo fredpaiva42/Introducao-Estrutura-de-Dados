@@ -267,8 +267,121 @@ Resulta no número de bytes de determinado tipo, se aplicado a um tipo ou no nú
   int b = sizeof(a); /* armazena o valor 4, pois uma varável do tipo int ocupa 4 bytes de memória (supostamente). */
 ````
 
-## Escopo
-Uma variável só é visível no escopo em que foi declarada, ou nos escopos interno ao escopo no qual ela foi declarada.
+## Condicionais
+
+### Comando if
+O comando if avalia uma expressão booleana e redireciona o fluxo de execução baseado no resultado avaliado (falso ou verdadeiro).
+
+- Sintaxe simples do comando `if` em C:
+```C
+    if (expressao_booleana) {
+        bloco de comandos
+}
+    if (dia == 5){
+        printf('Hoje é dia 5!');
+    }
+```
+- Sintaxe de um comando `if` e `else` (construção de seleção exclusiva):
+````c
+    if (dia == 5){
+        printf('Hoje é dia 5!');
+    } else {
+        printf('Hoje não é dia 5!');
+    }
+    
+    /* Caso a condição seja verdadeira, o primeiro bloco de código será executado, caso não seja o bloco do else é executado. */
+````
+- A Sintaxe da linguagem C também permite a codificação de `else if`, que é uma contrução de seleção exclusiva dentre multiplas condições:
+````c
+    if (dia == 5){
+        printf('Hoje é dia 5!');
+    } else if (dia == 6){
+        printf('Hoje é dia 6!');
+    } else {
+        printf('Hoje não é dia 5 e nem 6!');
+    }
+    
+    /* Nesse caso se a primeira condição for verdadeira, o primeiro bloco de código é executado e as outras condições não são avaliadas, se a primeira for falsa aí testa a segunda condição e assim por diante. */
+````
+### Expressões booleana
+Uma expressão booleana é uma expressão, que quanto testada, resulta em falso ou verdadeiro, no caso do C em `0` e `qualquer número != de 0`, elas são construídas no geral usando operadores relacionais e/ou lógicos.
+- Exemplo:
+````c
+    if (a != 0){
+        // bloco é executado
+    }
+    ou
+    if (a){
+        // bloco só é excutado se a não for igual a 0.
+    }
+````
+- Exemplo usandos operadores `relacionais` e `lógicos`:
+````c
+    if (media >= 6 && p1 >= 3.0 && p2 >= 3.0 && p3>= 3.0){
+        printf('Aprovado, sua media foi: %.2f', media);
+    }else{
+        printf('Você está de recuperação');
+    }
+    
+    ou
+    if (!(media < 6 || p1 < 3.0 || p2 < 3.0 || p3 < 3.0)){
+        printf('Aprovado, sua media foi: %.2f', media);
+    }else{
+        printf('Você está de recuperação');
+    }
+````
+### Bloco de Comandos ou Escopo
+Em C, podemos agrupar comandos em blocos envolvendo-os com `{...}`, eles podem ser criados em qualquer ponto do programa, basta usar as chaves. Porém, caso o bloco de comandos tenha apenas um comando, as `{}` podem ser omitiddas. 
+- Uma variável declarada dentro de um bloco, só existe enquanto os comandos do bloco estiverem sendo executados, assim que ele para de ser executado a variável deixa de existuir.
+- A partir do padrão C99, variáveis locais podem ser declaradas em qualquer ponto do bloco.
+- Exemplo:
+````c
+    /* Nesse ponto a variável i não existe, ela só existe no escopo em que foi declarada, no caso, no comando if.*/
+    if (n > 0){
+        int i;
+    }
+    /* Nesse ponto a variável i não existe, ela só existe no escopo em que foi declarada, no caso, no comando if.*/
+````
+- Obs: é uma boa prática de programação declarar as variáveis com o menor escopo possível, pois isso facilita o `entendimento` e a `manutenção` do código, além de evitar erros.
+- Obs2: Uma prática comum e boa, é em C é escrever os blocos com margem à esquerda maior que o comando que o precede. A (identação) melhora a legibilidade do código.
+
+### Operador condicinal
+A linguagem C possui também o operador condicional. Ele é uma alternativa ao comando `if` e `else`.
+- Sua forma geral: `condição ?  expressão_1 : expressão_2;`
+  - se a condição for verdadeira, a primeira expressão é executada, caso contrário, a segunda.
+- Exemplo:
+````c
+    /* Esses 2 jeitos realizam a mesma coisa */
+    if (a > b)
+        maior = a;
+    else
+        maior = b;
+    /* operador condicional:*/
+    maior = a > b ? a : b;
+````
+### Comando de seleção (Switch)
+A linguagem C tem o comando `switch` que seleciona uma opção dentre um conjunto possíveis de casos.
+
+- Sua forma geral:
+````c
+    switch( exp ) {
+        case op1:
+            // comando executado pois a exp == op 1
+        break;
+        case op2:
+        // comando executado pois a exp == op 2
+        break;
+        case op3:
+        // comando executado pois a exp == op 3
+        break;
+        default:
+            // é executado caso a exp não seja igual a nenhuma das op.
+        break;    
+    }
+````
+- Em op`i`, deve ser um número inteiro ou uma constante caractere. São executados até que se encontre `break`.
+- Se o comando `break` for omitido, a execução do caso continua com o comando dos casos seguintes.
+- O bloco `deafult` pode aparecer em qualquer posição, mas normalmente é colocado por último e pode também ser omitido.
 
 ## Laços de repetição em C
 
