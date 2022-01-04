@@ -230,7 +230,7 @@ Em C, um operador binário é escrito entre os seus operandos e um operador uná
     a += 1;
     a++;
     ++a;
-- ```
+```
 
 ### Operadores relacionais
 - São usados para comparar dois valores.
