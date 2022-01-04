@@ -406,3 +406,51 @@ Deve ser declarada do lado de fora da main. E é uma conveção que as constante
     #define A 2.3 // essa constante tem o tipo double
     #define A 2.3 f // essa constante real é do tipo float
 ````
+
+## Bibliotecas
+
+### Matemática
+A biblioteca padrão do C é a `<math.h>`.
+
+- As funções da biblioteca matmática são em geral definidas usando o tipo com maior precisão, para poder atender às apliaçoões que necessitam trabalhar com precisão dupla.
+- A biblioteca matemática facilita muito a nossa vida fornecedendo funções como a `sqrt` para extrair raiz e a função `pow` para potênciação e muitas outras.
+- Exemplos:
+````c
+    # include <math.h>
+    y = sqrt(x); 
+    a = pow(raio, 2); // na função pow o primeiro argumento é a base, e o segundo o expoente.
+````
+### stdlib.h
+#### rand (gerar sequências aleatórios)
+- Uma das funções que a biblioteca `<stdlib.h>` é a função `rand`. A função `rand` nos permite gerar números aleatórios, ela não recebe nenhum parâmetro de entrada e retorna um número aleatório entre 0 e `RAND_MAX`, onde `RAND_MAX` representa uma constante simbólica que é definida pela biblioteca.
+- Podemos definir nosso `RAND_MAX`, usando o operador de módulo.
+  ````c
+          c = rand() % 10; /*vai gerar um número aleatório entre 0 e 9*/
+  ````
+- Ao executarmos um programa com a função rand(), ela gerará um número aleatório, porém, ao reexecutarmos o programa, o número que vai aparecer é o mesmo da execução anterior. Isso acontece porque o algoritmo de geração de números aleatórios da biblioteca padrão gera uma sequência de números baseado num valor `semente`. A semente define determinada sequência de números a ser gerada. Se quisermos gerar diferentes sequências, devemos passar diferentes sementes para o gerador.
+#### srand (definir a semente do gerador de sequências aleatórias)
+- Para definirmos a semente temos a função `srand`, ela recebe como parâmetro um número inteiro, representando a semente a ser usadada.
+- E ainda é um problema, pois se quisermos uma nova sequência a cada execução vamos precisar informar diferentes sementes.
+- O valor da semente não pode ser fornecido pelo usuário.
+- Um truque simples pra resolver isso é usar uma função da biblioteca `<time.h>` chamada `time`, o valor retornado por ela pode ser usado como a nossa semente. **(obs: vou explicar sobre `time` na próxima linha)**
+````c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <time.h>
+    
+    int main (void) {
+        srand(time(NULL)); // srand para definir a semente, e a função time para que possamos ter sementes diferentes a cada execução
+        printf("%d\n", rand() % 10); // % 10 para que seja gerado um número apenas entre 0 e 9
+        printf("%d\n", rand() % 10);
+        printf("%d\n", rand() % 10);
+        printf("%d\n", rand() % 10);
+        
+        return 0;
+    }
+
+````
+
+### time.h
+- Na biblioteca padrão `time.h`, nos possuimos a função `time`, essa função tem como valor de retorno o **número total de segundos decorridos desde 01/01/1970.**
+- Essa função espera um parâmetro de entrada, mas em alguns casos podemos usar a **constante simbólica `NULL`**.
+
