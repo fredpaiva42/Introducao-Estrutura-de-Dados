@@ -454,3 +454,54 @@ A biblioteca padrão do C é a `<math.h>`.
 - Na biblioteca padrão `time.h`, nos possuimos a função `time`, essa função tem como valor de retorno o **número total de segundos decorridos desde 01/01/1970.**
 - Essa função espera um parâmetro de entrada, mas em alguns casos podemos usar a **constante simbólica `NULL`**.
 
+## Funções e ponteiros
+Para a construção de programas estruturados é sempre recomendado que se divida as grandes tarefas de computação em tarefas menores, e utilizar os resultados parciais das tarefas para compor o resultado final. É aí que entram as **funções.**
+
+### Funções em C
+- Em C tudo é feito atrávez de funções.
+- Em C, a criação de funções é o recurso adequado para codificar tarefas específicas, esse recurso nos traz três grandes vantagens:
+  - Deixa mais fácil o processo de resolução do problema, pois dividi-lo em pedaços menores acaba sendo mais fácil do que tentar resolver todo o problema de uma vez. Ou seja, pequenas funções que resolvem pequenos problemas específicos, são melhores que uma função gigante.
+  - Funções específicas podem ser reutílizadas em outros codígos.
+  - Facilita a legibilidade.
+- Se existe um procedimento repetido muitas vezes ao longo do codígo ou ao longo do programa, esse procedimento é um bom candidato a virar uma função.
+- Um programa deve ser pensado em funções, e estas, por sua vez, podem (e devem, se possível) esconder do corpo principal do programa detalhes ou particularidades de implementação.
+
+#### Variável do tipo ponteiro
+- Em muito dos casos na codificação de funções em C, precisaremos fazer o uso de variáveis do tipo **ponteiro.**
+  - Uma varíavel do tipo ponteiro `armazena endereços de memória`. Isso possibilita que possamos alterar o valor armazenado num espaço de memória sem necessariamente estar no escopo da variável que usa o espaço.
+  - Esse é um conceito crítico da linguagem C: a manipulação de ponteiros traz um grande poder de expressão para a linguagem, mas é importante tomar cuidado ao manipular ponteiros, pois temos que ter controle do espaço de memória que estamos acessando.
+
+### Criação de Funções
+- Em C, a sintaxe é a seguinte:
+  ````c
+        tipo_do_retorno _nome_da_função (lista da parâmetros){
+            corpo_da_função
+        }
+  ````
+  - Exemplo de um programa com uma função:
+  ````c
+  #include <stdio.h>
+
+  float celsius_fahrenheit (float c) {
+    float f;
+    f = 1.8 * c + 32;
+    return f;
+  }
+  
+  int main(void) {
+  float c, f;
+  
+      printf("Entre com a temperatura em Celsius: \n");
+      scanf("%f", &c);
+  
+      f = celsius_fahrenheit(c);
+  
+      printf("Temperatura em Fahrenheit: %.0f\n", f);
+      return 0;
+  }
+  ````
+- Para cada função que criamos precisamos escolher um nome, é importante que esse nome seja claro, sucinto e descreva bem o que aquela função faz, e, além disso, um programa em C **não pode** ter duas funções com o mesmo nome.
+- Um função pode receber dados de entrada, esses dados de entradas são **parâmetros da função** que são declarados dentro dos parênteses que seguem o nome da função num mesmo escopo.
+- Caso uma função não tenha parâmetros, colocamos a palavra `void` no lugar.
+- Uma função pode ter também um **valor de retorno** associado, antes do nome da função é preciso indicar o tipo do valor a ser retornado.
+- Caso não aja valor de retorno, usamos também aqui a palavra reservada `void`.
