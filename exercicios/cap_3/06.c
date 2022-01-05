@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(void) {
+int Ex06Cap3(void) {
     int escolha;
     int usuario;
     int computador;
