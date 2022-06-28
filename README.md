@@ -32,6 +32,8 @@
     <img src="./img/Ciclo de desenvolvimento.jpg" alt="Ciclo de desenvolvimento"/>
 </p>
 
+> **Note**: Caso tenha algum erro de sintaxe o programa não compila e o compilador apresenta o erro.
+
 ### Variáveis e operadores:
 - Uma variável representa um espaço na memória para armazenar determinado tipo de dado.
 - O nome da variável serve de referência ao dado armazenado no espaço de memória da variável.
@@ -47,7 +49,7 @@
 | double    | **8 bytes**         | **+- 10^(-308) a 10^(308)**        |
 
 - Obs: se quisermos modifica-los para representar apenas valores positivos basta colocarmos antes **unsigned**.
-- O porgramador pode requisitar uma conversão de tipo atraés do uso do operador de molde de tipo (operador cast), por exemplo:
+- O porgramador pode requisitar uma conversão de tipo através do uso do operador de molde de tipo (operador cast), por exemplo:
 ```c
     int a, b;
     a = (int) 3.5;
@@ -58,21 +60,6 @@
 
 Em C para usarmos as funções de entrada e saída é necessário importar a biblioteca
 **stdio**, com ela importada, nós podemos usar a função **printf** e a função **scanf**, com elas respectivamente, nós podemos ter entrada e saída de dados.
-
-## Observações
-- Obs 1: Caso tenha algum erro de sintaxe o programa não compila e o compilador apresenta o erro.
-
-- Obs 2: A diferença entre a **linguagem tipada** e não **tipada** é em uma nós precisamos fazer a declaração do tipo.
-
-- Obs 3: Numa **linguagem estática** o tipo é inferido na declaração da variável e checado pelo compilador, já numa **linguagem dinâmica** o tipo é inferido pelo valor que for atribuído àquela variável e checado no tempo de execução.
--
-- Obs 4: **Linguagens fortemente tipadas**, apresentam erros ou exceções quando tentamos fazer operações entre valores de tipos diferentes, só é possível fazer essas operações através de conversão de valores. Já as **linguagens de tipagem fraca** não é necessário fazer conversões e se pode cambiar entre os tipos livremente.
-
-- Obs 5: Em C o **0** é equivalente a **Falso** e **1** a **Verdadeiro**.
-
-- Obs 6: Tudo que começa com **#** em C é chamado de **diretiva**.
-
-- Obs 7: **Continue** ele pula direto para a próxima iteração.
 
 ## Compilador
 <img align="center" src="https://slideplayer.com.br/slide/17025453/98/images/10/Processo+de+compila%C3%A7%C3%A3o.jpg" alt="imagem processo de compilação">
@@ -89,6 +76,8 @@ Importações em C devem ser feitas da seguinte maneira:
 - O **include** é o equivalente ao **import** em Python.
 - **stdio.h** é a biblioteca de entrada e saída do C.
 
+>**Note**: Tudo que começa com **#** em C é chamado de **diretiva**.
+
 ## Função Main
 Todo programa em C deve possuir uma função principal chamada **main**, ela é uma função do tipo inteiro, então ela vai ser sempre retornar um número, e como ela é uma função especial, ela não tem parâmetros, por isso o **void** dentro dos parênteses.
 
@@ -103,6 +92,8 @@ A função **main** é declarada da seguinte maneira:
 ```
 - Quando a função **main** retorna 0 quer dizer que o programa está funcionando perfeitamente.
 - Em C ao final de cada linha é necessário ser finalizada com **;**.
+
+>**Note**: Em C o **0** é equivalente a **Falso** e **1** a **Verdadeiro**.
 
 ## Quebra de linha
 Quebra de linha em C é `\n`:
@@ -132,11 +123,17 @@ A declaração de uma variável reserva um espaço na memória para armazenar um
     int a = 5, b = 6;
     float c = 25.5;
 ```
-  
+
 - A linguagem permite que variáveis do mesmo tipo sejam declaradas juntas.
 - Variáveis devem ter nomes **únicos** no escopo que estão, caso contrário será apresentado erro pelo compilador.
 
-- Para que uma variável seja impressa pelo `printf()` é preciso fazer o uso de máscara (`%d - int`, `%f - float`, `%c - char`,...) indicando o tipo da variável e em seguida apos uma **,** passar o nome da variável, ficando assim: `printf("Você tem %d anos!", idade);`.
+- Para que uma variável seja impressa pelo `printf()` é preciso fazer o uso de máscara (`%d - int`, `%f - float`, `%c - char`,...) indicando o tipo da variável e em seguida após uma `,` passar o nome da variável, ficando assim: `printf("Você tem %d anos!", idade);`.
+
+>**Note**: A diferença entre a **linguagem tipada** e não **tipada** é em uma nós precisamos fazer a declaração do tipo.
+
+>**Note**: Numa **linguagem estática** o tipo é inferido na declaração da variável e checado pelo compilador, já numa **linguagem dinâmica** o tipo é inferido pelo valor que for atribuído àquela variável e checado no tempo de execução.
+
+>**Note**: **Linguagens fortemente tipadas**, apresentam erros ou exceções quando tentamos fazer operações entre valores de tipos diferentes, só é possível fazer essas operações através de conversão de valores. Já as **linguagens de tipagem fraca** não é necessário fazer conversões e se pode cambiar entre os tipos livremente.
 
 ## Função printf
 A função printf posiibilita a saída de textos e valores (sejam eles constantes, variáveis ou resultados de expressões) segundo esse formato:
@@ -201,7 +198,7 @@ Em C, um operador binário é escrito entre os seus operandos e um operador uná
     
     c = 1/3; /* resulta em 0 pois como é uma divisão entre inteiros só é armazenado o 0 de 0.3333... */
 ```
-- módulo `%`; 
+- módulo `%`;
   - o operador módulo, não se aplica a valores reais, só pode ser usado com valores do tipo **int**.
 
 - os operadores `*, / e %` tem precedência maior que `+` e `-`, o operador unário `-` tem maior precedência que os todos os anteriores.
@@ -211,7 +208,7 @@ Em C, um operador binário é escrito entre os seus operandos e um operador uná
   (a + b) * c / d /* nesse caso primeiro a soma, depois a multiplicação, e por último a divisão.*/
 ````
 ### Operadores de incremento e decremento
-- Possuem maior precedência que o operadorunário `-`.
+- Possuem maior precedência que o operador unário `-`.
 -  Devem ser aplicados somente em variáveis.
 - `n++` serve para incrementar;
 - `n--` serve para decrementar
@@ -331,7 +328,7 @@ Uma expressão booleana é uma expressão, que quanto testada, resulta em falso 
     }
 ````
 ### Bloco de Comandos ou Escopo
-Em C, podemos agrupar comandos em blocos envolvendo-os com `{...}`, eles podem ser criados em qualquer ponto do programa, basta usar as chaves. Porém, caso o bloco de comandos tenha apenas um comando, as `{}` podem ser omitiddas. 
+Em C, podemos agrupar comandos em blocos envolvendo-os com `{...}`, eles podem ser criados em qualquer ponto do programa, basta usar as chaves. Porém, caso o bloco de comandos tenha apenas um comando, as `{}` podem ser omitiddas.
 - Uma variável declarada dentro de um bloco, só existe enquanto os comandos do bloco estiverem sendo executados, assim que ele para de ser executado a variável deixa de existuir.
 - A partir do padrão C99, variáveis locais podem ser declaradas em qualquer ponto do bloco.
 - Exemplo:
@@ -342,8 +339,9 @@ Em C, podemos agrupar comandos em blocos envolvendo-os com `{...}`, eles podem s
     }
     /* Nesse ponto a variável i não existe, ela só existe no escopo em que foi declarada, no caso, no comando if.*/
 ````
-- Obs: é uma boa prática de programação declarar as variáveis com o menor escopo possível, pois isso facilita o `entendimento` e a `manutenção` do código, além de evitar erros.
-- Obs2: Uma prática comum e boa, é em C é escrever os blocos com margem à esquerda maior que o comando que o precede. A (identação) melhora a legibilidade do código.
+>**Note**: é uma boa prática de programação declarar as variáveis com o menor escopo possível, pois isso facilita o `entendimento` e a `manutenção` do código, além de evitar erros.
+
+>**Note**: Uma prática comum e boa, é em C é escrever os blocos com margem à esquerda maior que o comando que o precede. A (identação) melhora a legibilidade do código.
 
 ### Operador condicinal
 A linguagem C possui também o operador condicional. Ele é uma alternativa ao comando `if` e `else`.
@@ -399,8 +397,8 @@ while:
 ````
 
 ## Declaração de constantes
-Deve ser declarada do lado de fora da main. E é uma conveção que as constantes sejam definidas todas em maisculas.
-- se nenhum sufixo for adicionado uma **constante real é do tipo double**. 
+Deve ser declarada do lado de fora da main. E é uma conveção que as constantes sejam definidas todas em maiscúlas.
+- se nenhum sufixo for adicionado uma **constante real é do tipo double**.
 ````c
     #define C 15
     #define A 2.3 // essa constante tem o tipo double
@@ -412,7 +410,7 @@ Deve ser declarada do lado de fora da main. E é uma conveção que as constante
 ### Matemática
 A biblioteca padrão do C é a `<math.h>`.
 
-- As funções da biblioteca matmática são em geral definidas usando o tipo com maior precisão, para poder atender às apliaçoões que necessitam trabalhar com precisão dupla.
+- As funções da biblioteca matmática são em geral definidas usando o tipo com maior precisão, para poder atender às aplicações que necessitam trabalhar com precisão dupla.
 - A biblioteca matemática facilita muito a nossa vida fornecedendo funções como a `sqrt` para extrair raiz e a função `pow` para potênciação e muitas outras.
 - Exemplos:
 ````c
