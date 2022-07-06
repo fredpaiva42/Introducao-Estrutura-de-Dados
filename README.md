@@ -52,8 +52,8 @@
 - O porgramador pode requisitar uma conversão de tipo através do uso do operador de molde de tipo (operador cast), por exemplo:
 ```c
     int a, b;
-a = (int) 3.5;
-b = (int) 3.5 % 2;
+    a = (int) 3.5;
+    b = (int) 3.5 % 2;
 ```
 
 ## Aprendendo-C
@@ -84,11 +84,11 @@ Todo programa em C deve possuir uma função principal chamada **main**, ela é 
 A função **main** é declarada da seguinte maneira:
 ```C
     # include <stdio.h>
-
-int main(void) { // representa o cabeçalho da função.
-
-return 0;
-}
+    
+    int main(void) { // representa o cabeçalho da função.
+        
+        return 0;
+    }
 ```
 - Quando a função **main** retorna 0 quer dizer que o programa está funcionando perfeitamente.
 - Em C ao final de cada linha é necessário ser finalizada com **;**.
@@ -106,8 +106,8 @@ Quebra de linha em C é `\n`:
 - Para comentar um bloco de código, nós usamos o **/*** para abrir e ***/** para fechar.
 ````C
     // Com isso comento uma linha
-/* Assim eu consigo comentar
- * um bloco de código */
+    /* Assim eu consigo comentar
+     * um bloco de código */
 ````
 
 ## Declaração de variáveis
@@ -121,7 +121,7 @@ A declaração de uma variável reserva um espaço na memória para armazenar um
   - (**Na programação isso é considerada uma boa prática. Sempre que soubermos o valor a ser armazenado numa variável sendo declarada, devemos inicializá-la na declaração, evitando assim possíveis erros de veriável sem valor definido.**)
 ```C
     int a = 5, b = 6;
-float c = 25.5;
+    float c = 25.5;
 ```
 
 - A linguagem permite que variáveis do mesmo tipo sejam declaradas juntas.
@@ -151,7 +151,7 @@ A função printf posiibilita a saída de textos e valores (sejam eles constante
 ```c
     printf("%d %g\n", 33, 5.3); /*resulta em 33 5.3*/
 
-printf("Inteiro = %d  Real = %g\n", 33, 3.5); /* Inteiro = 33  Real = 5.3*/
+    printf("Inteiro = %d  Real = %g\n", 33, 3.5); /* Inteiro = 33  Real = 5.3*/
 ```
 <p align="center">
     <img src="./img/especificadores de formato.jpg" alt="Tabela com todos os especificadores"/>
@@ -166,8 +166,8 @@ Assim como o **printf** a função **scanf** recebe dois parâmetros, a máscara
 ```C
     int num;
 
-printf("Digite um número de 1 a 10: ");
-scanf("%d",&num);
+    printf("Digite um número de 1 a 10: ");
+    scanf("%d",&num);
 ```
 <p align="center">
     <img src="./img/especificadores de formato função scanf.jpg" alt="especificadores de formato função scanf"/>
@@ -188,15 +188,15 @@ Em C, um operador binário é escrito entre os seus operandos e um operador uná
   - No caso de uso de dois operandos distintos, o valor do operando de menor expressividade é implicitamente convertido para o tipo de maior expressividade.
 ```C
     // Exemplos
-int a;
-double b, c;
+    int a;
+    double b, c; 
 
-a = 3.5; /* como a é do tipo int, será armazendo apenas a parte inteira (3)*/
-
-b = a / 2.0; /* nesse caso é uma divisão com dois tipos distintos como a é int e está sendo dividido por um valor double (2.0),
+    a = 3.5; /* como a é do tipo int, será armazendo apenas a parte inteira (3)*/
+    
+    b = a / 2.0; /* nesse caso é uma divisão com dois tipos distintos como a é int e está sendo dividido por um valor double (2.0),
     a é implictamente convertido para double, por se tratar de um tipo com menor expressividade.*/
-
-c = 1/3; /* resulta em 0 pois como é uma divisão entre inteiros só é armazenado o 0 de 0.3333... */
+    
+    c = 1/3; /* resulta em 0 pois como é uma divisão entre inteiros só é armazenado o 0 de 0.3333... */
 ```
 - módulo `%`;
   - o operador módulo, não se aplica a valores reais, só pode ser usado com valores do tipo **int**.
@@ -205,7 +205,7 @@ c = 1/3; /* resulta em 0 pois como é uma divisão entre inteiros só é armazen
 - Em casos me mesma precedência, serão avaliados no geral da esquerda para direita.
 ````c
   a + b * c / d /* primeiro a multiplicação, depois a divisão seguida da soma.*/
-(a + b) * c / d /* nesse caso primeiro a soma, depois a multiplicação, e por último a divisão.*/
+  (a + b) * c / d /* nesse caso primeiro a soma, depois a multiplicação, e por último a divisão.*/
 ````
 ### Operadores de incremento e decremento
 - Possuem maior precedência que o operador unário `-`.
@@ -215,18 +215,18 @@ c = 1/3; /* resulta em 0 pois como é uma divisão entre inteiros só é armazen
 - `++` ou `--` podem ser usados tanto antes, quanto depois da varíável. Porém, isso tem resultados diferentes em casos de atribuição a outra variável, no caso dos operadores antes, o resultado armazenado já vai ser com o valor incrementado ou decrementado, já quando os operadores vêm após a variável o valor armazenado é o valor da variável sem incremento ou decremento.
 ```c
     int n = 5, x;
-
-x = n++; /* x irá armazenar o valor 5*/
-x = ++n; /* x irá armazenar o valor 6*/
-
-/* em ambos os casos o valor de n será 6.*/
-
-/* Em C podemos escrever esses comandos de diversas maneiras:*/
-/* São todos equivalentes */
-a = a + 1;
-a += 1;
-a++;
-++a;
+    
+    x = n++; /* x irá armazenar o valor 5*/
+    x = ++n; /* x irá armazenar o valor 6*/
+    
+    /* em ambos os casos o valor de n será 6.*/
+    
+    /* Em C podemos escrever esses comandos de diversas maneiras:*/
+    /* São todos equivalentes */
+    a = a + 1;
+    a += 1;
+    a++;
+    ++a;
 ```
 
 ### Operadores relacionais
@@ -244,11 +244,11 @@ a++;
 - São normalmente utilizados para codificar tomadas de decisão, mas podemos, utiliza-los para atribuir valores a variáveis.
 ````c
     int a, b;
-int c = 23;
-int d = c + 4;
+    int c = 23;
+    int d = c + 4;
 
-a = (c < 20) || (d > c); /*verdadeiro*/
-b = (c < 20) && (d > c); /* falso, nesse caso como se trata do and, se a primeira expressão for falsa, a seguinte nem chega a ser avaliada. */ 
+    a = (c < 20) || (d > c); /*verdadeiro*/
+    b = (c < 20) && (d > c); /* falso, nesse caso como se trata do and, se a primeira expressão for falsa, a seguinte nem chega a ser avaliada. */ 
 ````
 - C oferece os seguintes operadores:
 
@@ -261,7 +261,7 @@ Resulta no número de bytes de determinado tipo, se aplicado a um tipo ou no nú
 
 ````c
   int a = sizeof(double); /* armazenda o valor 8 na variável a, pois um double ocupa 8 bytes de memória. */
-int b = sizeof(a); /* armazena o valor 4, pois uma varável do tipo int ocupa 4 bytes de memória (supostamente). */
+  int b = sizeof(a); /* armazena o valor 4, pois uma varável do tipo int ocupa 4 bytes de memória (supostamente). */
 ````
 
 ## Condicionais
@@ -272,60 +272,60 @@ O comando if avalia uma expressão booleana e redireciona o fluxo de execução 
 - Sintaxe simples do comando `if` em C:
 ```C
     if (expressao_booleana) {
-bloco de comandos
+        bloco de comandos
 }
-if (dia == 5){
-printf('Hoje é dia 5!');
-}
+    if (dia == 5){
+        printf('Hoje é dia 5!');
+    }
 ```
 - Sintaxe de um comando `if` e `else` (construção de seleção exclusiva):
 ````c
     if (dia == 5){
-printf('Hoje é dia 5!');
-} else {
-printf('Hoje não é dia 5!');
-}
-
-/* Caso a condição seja verdadeira, o primeiro bloco de código será executado, caso não seja o bloco do else é executado. */
+        printf('Hoje é dia 5!');
+    } else {
+        printf('Hoje não é dia 5!');
+    }
+    
+    /* Caso a condição seja verdadeira, o primeiro bloco de código será executado, caso não seja o bloco do else é executado. */
 ````
 - A Sintaxe da linguagem C também permite a codificação de `else if`, que é uma contrução de seleção exclusiva dentre multiplas condições:
 ````c
     if (dia == 5){
-printf('Hoje é dia 5!');
-} else if (dia == 6){
-printf('Hoje é dia 6!');
-} else {
-printf('Hoje não é dia 5 e nem 6!');
-}
-
-/* Nesse caso se a primeira condição for verdadeira, o primeiro bloco de código é executado e as outras condições não são avaliadas, se a primeira for falsa aí testa a segunda condição e assim por diante. */
+        printf('Hoje é dia 5!');
+    } else if (dia == 6){
+        printf('Hoje é dia 6!');
+    } else {
+        printf('Hoje não é dia 5 e nem 6!');
+    }
+    
+    /* Nesse caso se a primeira condição for verdadeira, o primeiro bloco de código é executado e as outras condições não são avaliadas, se a primeira for falsa aí testa a segunda condição e assim por diante. */
 ````
 ### Expressões booleana
 Uma expressão booleana é uma expressão, que quanto testada, resulta em falso ou verdadeiro, no caso do C em `0` e `qualquer número != de 0`, elas são construídas no geral usando operadores relacionais e/ou lógicos.
 - Exemplo:
 ````c
     if (a != 0){
-// bloco é executado
-}
-ou
-if (a){
-// bloco só é excutado se a não for igual a 0.
-}
+        // bloco é executado
+    }
+    ou
+    if (a){
+        // bloco só é excutado se a não for igual a 0.
+    }
 ````
 - Exemplo usandos operadores `relacionais` e `lógicos`:
 ````c
     if (media >= 6 && p1 >= 3.0 && p2 >= 3.0 && p3>= 3.0){
-printf('Aprovado, sua media foi: %.2f', media);
-}else{
-printf('Você está de recuperação');
-}
-
-ou
-if (!(media < 6 || p1 < 3.0 || p2 < 3.0 || p3 < 3.0)){
-printf('Aprovado, sua media foi: %.2f', media);
-}else{
-printf('Você está de recuperação');
-}
+        printf('Aprovado, sua media foi: %.2f', media);
+    }else{
+        printf('Você está de recuperação');
+    }
+    
+    ou
+    if (!(media < 6 || p1 < 3.0 || p2 < 3.0 || p3 < 3.0)){
+        printf('Aprovado, sua media foi: %.2f', media);
+    }else{
+        printf('Você está de recuperação');
+    }
 ````
 ### Bloco de Comandos ou Escopo
 Em C, podemos agrupar comandos em blocos envolvendo-os com `{...}`, eles podem ser criados em qualquer ponto do programa, basta usar as chaves. Porém, caso o bloco de comandos tenha apenas um comando, as `{}` podem ser omitiddas.
@@ -334,10 +334,10 @@ Em C, podemos agrupar comandos em blocos envolvendo-os com `{...}`, eles podem s
 - Exemplo:
 ````c
     /* Nesse ponto a variável i não existe, ela só existe no escopo em que foi declarada, no caso, no comando if.*/
-if (n > 0){
-int i;
-}
-/* Nesse ponto a variável i não existe, ela só existe no escopo em que foi declarada, no caso, no comando if.*/
+    if (n > 0){
+        int i;
+    }
+    /* Nesse ponto a variável i não existe, ela só existe no escopo em que foi declarada, no caso, no comando if.*/
 ````
 >**Note**: é uma boa prática de programação declarar as variáveis com o menor escopo possível, pois isso facilita o `entendimento` e a `manutenção` do código, além de evitar erros.
 
@@ -350,12 +350,12 @@ A linguagem C possui também o operador condicional. Ele é uma alternativa ao c
 - Exemplo:
 ````c
     /* Esses 2 jeitos realizam a mesma coisa */
-if (a > b)
-maior = a;
-else
-maior = b;
-/* operador condicional:*/
-maior = a > b ? a : b;
+    if (a > b)
+        maior = a;
+    else
+        maior = b;
+    /* operador condicional:*/
+    maior = a > b ? a : b;
 ````
 ### Comando de seleção (Switch)
 A linguagem C tem o comando `switch` que seleciona uma opção dentre um conjunto possíveis de casos.
@@ -363,19 +363,19 @@ A linguagem C tem o comando `switch` que seleciona uma opção dentre um conjunt
 - Sua forma geral:
 ````c
     switch( exp ) {
-case op1:
-// comando executado pois a exp == op 1
-break;
-case op2:
-// comando executado pois a exp == op 2
-break;
-case op3:
-// comando executado pois a exp == op 3
-break;
-default:
-// é executado caso a exp não seja igual a nenhuma das op.
-break;
-}
+        case op1:
+            // comando executado pois a exp == op 1
+        break;
+        case op2:
+        // comando executado pois a exp == op 2
+        break;
+        case op3:
+        // comando executado pois a exp == op 3
+        break;
+        default:
+            // é executado caso a exp não seja igual a nenhuma das op.
+        break;    
+    }
 ````
 - Em op`i`, deve ser um número inteiro ou uma constante caractere. São executados até que se encontre `break`.
 - Se o comando `break` for omitido, a execução do caso continua com o comando dos casos seguintes.
@@ -386,14 +386,14 @@ break;
 for:
 ```C
     for (i=0; i < 10; i++){
-//bloco de código a ser repetido    
-}
+        //bloco de código a ser repetido    
+    }
 ```
 while:
 ````C
     while(){
-
-}
+    
+    }
 ````
 
 ## Declaração de constantes
@@ -401,8 +401,8 @@ Deve ser declarada do lado de fora da main. E é uma conveção que as constante
 - se nenhum sufixo for adicionado uma **constante real é do tipo double**.
 ````c
     #define C 15
-#define A 2.3 // essa constante tem o tipo double
-#define A 2.3 f // essa constante real é do tipo float
+    #define A 2.3 // essa constante tem o tipo double
+    #define A 2.3 f // essa constante real é do tipo float
 ````
 
 ## Bibliotecas
@@ -415,8 +415,8 @@ A biblioteca padrão do C é a `<math.h>`.
 - Exemplos:
 ````c
     # include <math.h>
-y = sqrt(x);
-a = pow(raio, 2); // na função pow o primeiro argumento é a base, e o segundo o expoente.
+    y = sqrt(x); 
+    a = pow(raio, 2); // na função pow o primeiro argumento é a base, e o segundo o expoente.
 ````
 ### stdlib.h
 #### rand (gerar sequências aleatórios)
@@ -433,19 +433,19 @@ a = pow(raio, 2); // na função pow o primeiro argumento é a base, e o segundo
 - Um truque simples pra resolver isso é usar uma função da biblioteca `<time.h>` chamada `time`, o valor retornado por ela pode ser usado como a nossa semente. **(obs: vou explicar sobre `time` na próxima linha)**
 ````c
     #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-int main (void) {
-srand(time(NULL)); // srand para definir a semente, e a função time para que possamos ter sementes diferentes a cada execução
-printf("%d\n", rand() % 10); // % 10 para que seja gerado um número apenas entre 0 e 9
-printf("%d\n", rand() % 10);
-printf("%d\n", rand() % 10);
-printf("%d\n", rand() % 10);
-
-return 0;
-}
-
+    #include <stdlib.h>
+    #include <time.h>
+    
+    int main (void) {
+        srand(time(NULL)); // srand para definir a semente, e a função time para que possamos ter sementes diferentes a cada execução
+        printf("%d\n", rand() % 10); // % 10 para que seja gerado um número apenas entre 0 e 9
+        printf("%d\n", rand() % 10);
+        printf("%d\n", rand() % 10);
+        printf("%d\n", rand() % 10);
+        
+        return 0;
+    }
+    
 ````
 
 ### time.h
@@ -471,15 +471,15 @@ Para a construção de programas estruturados é sempre recomendado que se divid
 
 ### Criação de Funções
 - Em C, a sintaxe é a seguinte:
-  ````c
+````c
         tipo_do_retorno _nome_da_função (lista da parâmetros){
             corpo_da_função
         }
-  ````
+````
   - Exemplo de um programa com uma função:
-  ````c
+````c
   #include <stdio.h>
-
+  
   float celsius_fahrenheit (float c) {
     float f;
     f = 1.8 * c + 32;
@@ -497,7 +497,7 @@ Para a construção de programas estruturados é sempre recomendado que se divid
       printf("Temperatura em Fahrenheit: %.0f\n", f);
       return 0;
   }
-  ````
+````
 - Para cada função que criamos precisamos escolher um nome, é importante que esse nome seja claro, sucinto e descreva bem o que aquela função faz, e, além disso, um programa em C **não pode** ter duas funções com o mesmo nome.
 - Um função pode receber dados de entrada, esses dados de entradas são **parâmetros da função** que são declarados dentro dos parênteses que seguem o nome da função num mesmo escopo.
 - Caso uma função não tenha parâmetros, colocamos a palavra `void` no lugar.
@@ -511,15 +511,15 @@ Para a construção de programas estruturados é sempre recomendado que se divid
 ````c
 # include <stdio.h>
 
-float celsius_fahrenheit (float c); /* Protótipo da função */
+    float celsius_fahrenheit (float c); /* Protótipo da função */
 
-int main (void) {
-    /* Corpo da função principal */
-}
+  int main (void) {
+      /* Corpo da função principal */
+  }
 
-float celsius_fahrenheit (float c) {
-    /* Corpo da função auxiliar */
-}
+  float celsius_fahrenheit (float c) {
+      /* Corpo da função auxiliar */
+  }
 ````
 - No protótipo, não há necessecidade de indicar os nomes dos parâmetros, apenas os seus tipos. Porém, geralmente é bom manter os nomes dos parâmetros, pois eles servem como documentação do significado de cada parâmetro, desde que utilizemos nomes coerentes.
 - O Protótipo da função é necessário para que o compilador verifique os tipos dos parâmetros na chamada da função. No exemplo o compilador verifica se o parâmetro passado é do tipo **float** (ou um valor que possa ser convertido para **float**), que é o tipo do seu valor de retorno.
