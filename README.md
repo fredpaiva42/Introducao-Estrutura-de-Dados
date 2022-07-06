@@ -549,3 +549,4 @@ float volume_cilindro (float r, float h){
 - As **variáveis locais** só podem ser acessadas após a sua declaração e dentro da função em que foram definidas. Dentro de uma função não se tem acesso a variáveis locais definidas em outras funções.
 - As regras são as mesmas para variáveis declaradas dentro de blocos. Se um bloco é definido dentro de uma função, dentro do bloco, se tem acesso às variáveis locais da função declaradas antes do bloco. No entanto as variáveis declaradas dentro do bloco não podem ser acessadas na função fora do bloco que as declara.
 
+
