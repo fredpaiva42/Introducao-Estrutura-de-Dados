@@ -8,7 +8,7 @@
 
 ### Principais elementos de um computador:
 <p align="center">
-    <img src=".\img\principais elementos de um computador.jpg" alt="Principais elementos de um computador"/>
+    <img src="./img/principais elementos de um computador.jpg" alt="Principais elementos de um computador"/>
 </p>
 
 
@@ -550,3 +550,19 @@ float volume_cilindro (float r, float h){
 - As regras são as mesmas para variáveis declaradas dentro de blocos. Se um bloco é definido dentro de uma função, dentro do bloco, se tem acesso às variáveis locais da função declaradas antes do bloco. No entanto as variáveis declaradas dentro do bloco não podem ser acessadas na função fora do bloco que as declara.
 
 
+### Modelo de pilha
+
+- A alocação dos espaços de memórias dos parâmetros e das variáveis locais seguem um _modelo de pilha_.
+- Analogia da pilha de pratos, o sistema gerencia a memória das variáveis automáticas da mesma maneira.
+- Uma área da memória é reservada para armazenar a **pilha de execução** do programa. Quando a declaração de uma variável local é encontrada, o espeço de memória no topo da pilha de execução é associado à variável. Quando o tempo de vida da variável acaba, o espaço correspondente ao topo da pilha é liberado para ser usado por outra variável.
+
+  ![](./img/Pilha%20de%20variáveis%20durante%20a%20execução%20do%20programa.png)
+- Seguindo o exemplo da imagem acima:
+  - Quando a execução do programa se inicia, a função **main** começa a sua execução.
+  - (a) No ínicio da função, três variáveis são declaradas. As três são alocadas no topo da pilha (inicialmente vazia).
+  - Como nenhum valor é atribuido às variáveis, os espaços de memória correspondentes armazenam valores indefinidos ("lixos").
+  - O programa pede que o usuário defina os valores do raio e da altura do cilindro. (b) os valores capturados são atribuidos as variáveis correspondentes.
+  - A função **main** chama a função auxiliar para fazer o cálculo do volume.
+  - A chamada da função representa primeiramente uma transferência de fluxo de execução para a função.
+  - (c) Os parâmetros da função são alocados na pilha e seus valores, inicializados com os valores passados na chamada da função.
+  - Nesse momento, como o controle da execução foi tranferido para a função auxiliar, não se tem acesso às variáveis declaradas na função main, apesar delas estarem alocadas na base da pilha (a função **main** ainda não terminou, apenas teve sua execução suspensa).
