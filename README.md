@@ -566,3 +566,70 @@ float volume_cilindro (float r, float h){
   - A chamada da função representa primeiramente uma transferência de fluxo de execução para a função.
   - (c) Os parâmetros da função são alocados na pilha e seus valores, inicializados com os valores passados na chamada da função.
   - Nesse momento, como o controle da execução foi tranferido para a função auxiliar, não se tem acesso às variáveis declaradas na função main, apesar delas estarem alocadas na base da pilha (a função **main** ainda não terminou, apenas teve sua execução suspensa).
+  - (d) Dentro da função auxiliar, é declarada uma variável local adicional e alocada no topo da pilha de execução, inicialmente com valor indefinido.
+  - (e) A função auxiliar calcula o valor do volume e o atribui à variável local.
+  - A função auxiliar retorn o valor. Neste momento, a função auxiliar termina sua execução e o controle volta para função _main_. Os parâmetros e variáveis locais da função auxiliar são desempilhados e deixam de existir.
+  - (f) Na função _main_, o valor retornado pela função auxiliar é atribuido à variável volume.
+
+### Ponteiro de variáveis
+
+- Uma função pode retornar um valor para a função que a chama. No entanto, a possibilidade de retornar um único valor nem sempre é satisfatória. Muitas vezes precisamos transferir mais de um valor para a função que chama, o que não pode ser feito via retorno explícito de valores.
+- Para ilustrar essa discussão vamos usar de exemplo primeiro essa função simples que calcula a soma de dois valores inteiros:
+````c
+# include <stdio.h>
+
+int soma (int a, int b){
+    int c = a + b;
+    return c
+}
+
+int main (void){
+    int s = soma(3,5);
+    printf("Soma = %d\n", s);
+    
+    return 0;
+}
+````
+- Este exemplo não apresenta nenhuma dificuldade, pois o resultado pode ser retornado explicitamente.
+- O problema é quando queremos que a função retorne mais de um valor.
+- Como agora, por exemplo, vamos considerar uma função que calcula a soma e o produdo de dois números. Vamos ver duas formas de implementá-la, uma incorreta e uma correta.
+- **Incorreta:**
+````c
+/* função somaprod (versão ERRADA) */
+# include <stdio.h>
+
+void somaprod (int a, int b, int c, int d){
+    c  = a + b;
+    d = a * b;
+}
+
+int main (void){
+    int s, p;
+    somaprod(3,5,s,p);
+    print("Soma = %d Produto = %d\n", s, p);
+    return 0;
+}
+````
+- Esse código não funciona como o esperado. Serão impressos valores "lixos", pois s e p não foram inicializadas na função _**main**_ e seus valores não são alterados. Alterados são os valores de **c** e **d** dentro da função **somaprod**, mas eles não representam as variáveis da função **main**, sendo apenas inicializados com os valores de s e p na chamada da função. 
+
+#### Variáveis do tipo ponteiro
+- A linguagem C permite o armazenamento e a manipulação de valores de endereços de memória. Para cada tipo existente, há um **tipo ponteiro** que pode armazenar endereços da memória nos quais existem valores do tipo correspondente armazenados. 
+  - Por exemplo, quando escrevemos: `int a;` declaramos uma variável de nome **a** que pode armazenar valores inteiros. Automaticamente, reserva-se um espaço na memória suficiente para armazenar valores inteiros (geralmente 4 bytes).
+- Da mesma forma que declaramos uma variável int para armazenar inteiros, nós podemos declarar variáveis que armazenam valores de endereços de memória nos quais há valores inteiros armazenados.
+- Para declarar um ponteiro nós colocamos o seu tipo e antes de nomea-lo, colocamos o caractere `*`: `int *p;`
+  - Declaramos uma variável de nome **p** que pode armazenar endereços de memória nos quais existe um inteiro armazenado.
+- Para acessar endereços de memória, nós usamos o operador unário `&` ("endereço de"), que quando aplicado em variáveis, resulta no endereço da posição de memória reservado para a variável.
+- Já para atribuir, o operador unário `*` ("conteúdo de"), que quando aplicado a variáveis do tipo ponteiro, acessa o conteúdo que está armazenado naquele endereço de memória.
+- Exemplo:
+````c
+int a; // variável do tipo inteiro
+int *p; // variável do tipo ponteiro para inteiro
+
+a = 5; // a recebe o valor 5
+p = &a; // p recebe endereço de memória de a
+
+*p = 6; // o conteúdo de p recebe 6, ou seja a recebe 6
+````
+- Imagem com a representação do exemplo acima:
+  ![](./img/Ponteiro%20na%20pilha%20de%20execução.png)
+  - Quando as variáveis foram declaradas, elas armazenaram valores "lixo", pois ainda não tinham sido inicializada. E no fim **a** foi atualizada com o valor recebido por `*p`, pois acessar **a** é equivalente a acessar `*p` já que este possui o endereço de a. Dizemos que **p aponta para a**.
