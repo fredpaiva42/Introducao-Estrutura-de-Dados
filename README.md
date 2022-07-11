@@ -633,3 +633,4 @@ p = &a; // p recebe endereço de memória de a
 - Imagem com a representação do exemplo acima:
   ![](./img/Ponteiro%20na%20pilha%20de%20execução.png)
   - Quando as variáveis foram declaradas, elas armazenaram valores "lixo", pois ainda não tinham sido inicializada. E no fim **a** foi atualizada com o valor recebido por `*p`, pois acessar **a** é equivalente a acessar `*p` já que este possui o endereço de a. Dizemos que **p aponta para a**.
+
