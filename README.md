@@ -633,4 +633,81 @@ p = &a; // p recebe endereço de memória de a
 - Imagem com a representação do exemplo acima:
   ![](./img/Ponteiro%20na%20pilha%20de%20execução.png)
   - Quando as variáveis foram declaradas, elas armazenaram valores "lixo", pois ainda não tinham sido inicializada. E no fim **a** foi atualizada com o valor recebido por `*p`, pois acessar **a** é equivalente a acessar `*p` já que este possui o endereço de a. Dizemos que **p aponta para a**.
+- A possibilidade de manipular ponteiros de variáveis é uma das maiores potencialidades de C. Por outro lado, o uso indevido desta manipulação é uma das principais causas de programas que "voam", isto é, não só não funcionam como pior ainda, podem gerar efeitos colaterais não previstos.
+- Exemplos de uso de ponteiros:
+````c
+int main (void){
+    int a;
+    int *p;
+    p = &a;
+    *p = 2;
+    printf("%d\n", a); // 2
+    return 0;
+}
+````
+````c
+/* Código com ERRO */
+int main (void){
+    int a, b, *p;
+    a = 2;
+    *p = 3;
+    b = a + (*p);
+    printf("%d\n", b); // erro, p não foi inicializada
+    return 0;
+}
+````
+- Só podemos preencher o conteúdo de um ponteiro se este tiver sido devidamente inicializado, isto é, ele deve apontar para um espaço de memória para o qual já prevê o armazenamento de valores do tipo em questão.
 
+#### Passando ponteiros para funções
+- Os ponteiros oferecem meios de alterar valores de variáveis acessando-as indiretamente. As funçõe não podem alterar diretamente valores de variáveis da função que fez a chamada. No entanto, se passarmos para uma função os valores dos endereços de memória em que suas variáveis estão armazenadas, essa função pode alterar indiretamente, os valores das variáveis da função que a chamou.
+- Exemplo da soma e produto de dois números inteiros da forma correta:
+````c
+/* função somaprod (versão CORRETA) */
+# include <stdio.h>
+
+void soma (int a, int b, int *p, int *q){
+    *p = a + b;
+    *q = a * b;
+}
+
+int main (void){
+    int s, p;
+    somaprod(3, 5, &s, &p);
+    printf("Soma = %d\n Produto = %d\n", s, p);
+    return 0;
+}
+````
+![](./img/Execução%20de%20somaprod%20da%20forma%20correta%20com%20o%20uso%20de%20ponteiros.png)
+
+### Variáveis globais e estáticas
+- É possível também fazer a comunicação entre funções, com o uso de variáveis globais. Se uma variável é declarada fora do corpo das funções, ela é dita **global**.
+- Uma variável global é visível a todas as funções subsequentes.
+- As variáveis globais não são armazenadas na pilha de execução, portanto não deixam de existir quando a execução de uma função termina. Elas existem enquanto o programa estiver sendo executado.
+- Exemplo da função **somaprod** agora com uso de variáveis globais:
+````c
+# include <stdio.h>
+
+int s, p; /* variáveis globais */
+    
+void somaprod (int a, int b){
+    s = a + b;
+    p = a * b;
+}
+
+int main (void){
+    int x, y;
+    scanf("%d %d", &x, &y);
+    somaprod(x, y);
+    printf("Soma = %d produto = %d\n", s, p);
+    return 0;
+}
+````
+- É importante que o uso de variáveis globais seja feito com **cautela**, pois podemos criar um alto grau de interdependência entre as funções, o que dificulta o entendimento e o reúso do código.
+- Em casos de programas maiores, nos quais os códigos é distribuído em diferentes arquivos, o uso de variáveis globais se torna ainda menos recomendado.
+- O nome de uma variável global representa um símbolo externo, acessível em qualquer outro arquivo que compõe o programa. É fácil perder o controle de acessos a variáveis globais em programas grandes. Para amenizar, existe a possibilidade de declarar uma variável global como sendo estática:
+````c
+static int s, p;
+````
+- Nesse caso a variável global é visível apenas dentro do arquivo que a declara.
+- De maneira análoga, as funções também podem ser declaradas como estáticas, não podendo ser chamadas por funções definidas em outros arquivos. Esta é uma prática de programação **obrigatória** quando estamos desenvolvendo programas com vários arquivos: funções auxiliares usadas apenas dentro de um arquivo devem ser declaradas como estáticas. Com isso, evitamos o acesso indesejável à função e preservamos o ambiente global (o nome da função não é um símbolo exportado).
+- Podemos também declarar variáveis estáticas dentro de funções. Essas variáveis também não são armazenadas na pilha, mas sim numa **área de memória estática** que existe enquanto o programa está sendo executado. Ao contrário das variáveis locais (ou automática), que existem apenas enquanto a função à qual elas pertencem estiver sendo executada, as estáticas, assim como as globais, continuam existindo mesmo antes ou depois de a função ser executada. No entanto diferentemente das variáveis globais, uma variável estática declarada dentro de uma função só é visível dentro dessa função. Uma utilização importante de variáveis estáticas dentro de funções é quando se necessita recuperar o valor de uma variável atribuída na última vez que a função foi executada.
