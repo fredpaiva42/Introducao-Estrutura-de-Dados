@@ -769,8 +769,8 @@ int fat (int n){
 - Exemplo de MDC recursiva:
 - O valor do máximo divisor comum de dois números inteiros positivos, MDC(x,y), pode ser calculado usando o algoritmo de Euclides. Este algoritmo é baseado no fato de que se o resto da divisão de x por y, representado por r, for igual a 0, y é o MDC. Se o resto r for diferente de zero, o MDC de x e y é igual ao MDC de y e r. O processo se repete até que o valor do resto da divisão seja zero, o que garantidamente irá acontecer, pois no caso extremo, chegaremos ao valor do MDC de um valor n e 1, que vale 1.
 - A definição de MDC(x,y):
-  - MDC(x,y) = y, se x % y == 0
-  - MDC(x,y) = MDC(y, x%y), se x % y != 0
+  - MDC(x,y) = y, **se** x % y == 0
+  - MDC(x,y) = MDC(y, x%y), **se** x % y != 0
 ````c
 int mdc(int x, int y){
     int r = x % y;
