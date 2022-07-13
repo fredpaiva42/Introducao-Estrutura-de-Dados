@@ -711,3 +711,73 @@ static int s, p;
 - Nesse caso a variável global é visível apenas dentro do arquivo que a declara.
 - De maneira análoga, as funções também podem ser declaradas como estáticas, não podendo ser chamadas por funções definidas em outros arquivos. Esta é uma prática de programação **obrigatória** quando estamos desenvolvendo programas com vários arquivos: funções auxiliares usadas apenas dentro de um arquivo devem ser declaradas como estáticas. Com isso, evitamos o acesso indesejável à função e preservamos o ambiente global (o nome da função não é um símbolo exportado).
 - Podemos também declarar variáveis estáticas dentro de funções. Essas variáveis também não são armazenadas na pilha, mas sim numa **área de memória estática** que existe enquanto o programa está sendo executado. Ao contrário das variáveis locais (ou automática), que existem apenas enquanto a função à qual elas pertencem estiver sendo executada, as estáticas, assim como as globais, continuam existindo mesmo antes ou depois de a função ser executada. No entanto diferentemente das variáveis globais, uma variável estática declarada dentro de uma função só é visível dentro dessa função. Uma utilização importante de variáveis estáticas dentro de funções é quando se necessita recuperar o valor de uma variável atribuída na última vez que a função foi executada.
+- Exemplo da utilização de variáveis estáticas dentro das funções:
+- Uma função que serve para imprimir números reais.
+````c
+void imprime (float a){
+    static int n = 1;
+    printf(" %f ", a);
+    if((n % 5) == 0) // quando n é multiplo de 5, pula linha
+        printf("\n");
+    n++;
+}
+````
+- Nesse código a variável estática foi inicializada com 1. Se omitirmos a inicialização de uma variável estática, ela é automaticamente inicializada com o valor zero. Isso também vale para variáveis globais.
+
+### Recursão
+- Funções podem ser chamadas recursivamente, quando dentro do corpo da função é chamada a própria função.
+- **Recursão direta**: é quando uma função chama a própria função.
+- **Recursão indireta**: é quando uma função A chama uma função B e B chama A.
+- Em cada chamada de função, as variáveis e parâmetros são empilhados na pilha de execução.
+- As variáveis locais de chamadas recursivas são **independetes** entre si, como se estivéssemos chamando funções diferentes.
+- Funções com recursão precisam ter uma **condição de contorno**, se não ficarão presas num loop infinito.
+- Exemplo de função recursiva que não tem **condição de contorno**:
+````c
+/* Exemplo de procedimento sem fim */
+void func (int n){
+    printf("%d\n", n);
+    func (n);
+    printf("* ");
+}
+````
+- Exemplo de função recursiva com **condição de contorno**:
+````c
+/* Exemplo de recursão usada da maneira correta */
+void func (int n){
+    printf("%d", n);
+    if (n > 0) { // condição de contorno
+        func(n - 1);
+        printf("* ");
+    }
+}
+````
+- Nesse caso a chamada recursiva só é feita se o valor de n for positivo.
+- Em geral, as implementações recursivas são pensadas considerando-se a definição recursiva do problema que desejamos resolver. 
+- Por exemplo, ao considerar o cálculo do fatorial de um número inteiro positivo.
+- O valor de fatorial pode ser definido por:
+  - n! = 1 **se** n = 0
+  - n! = n * (n-1)! **se** n > 0
+- Implentação do cálculo do fatorial de um número inteiro positivo considerando a definição acima:
+````c
+int fat (int n){
+    if (n==0)
+        return 1;
+    else
+        return n * fat(n - 1);
+}
+````
+- Exemplo de MDC recursiva:
+- O valor do máximo divisor comum de dois números inteiros positivos, MDC(x,y), pode ser calculado usando o algoritmo de Euclides. Este algoritmo é baseado no fato de que se o resto da divisão de x por y, representado por r, for igual a 0, y é o MDC. Se o resto r for diferente de zero, o MDC de x e y é igual ao MDC de y e r. O processo se repete até que o valor do resto da divisão seja zero, o que garantidamente irá acontecer, pois no caso extremo, chegaremos ao valor do MDC de um valor n e 1, que vale 1.
+- A definição de MDC(x,y):
+  - MDC(x,y) = y, se x % y == 0
+  - MDC(x,y) = MDC(y, x%y), se x % y != 0
+````c
+int mdc(int x, int y){
+    int r = x % y;
+    if (r == 0)
+        return y;
+    else
+        return mdc(y, r);
+}
+````
+- Não é necessário associar o maior número ao x. Pois se o valor de x for menor que o valor de y, o algoritmo automaticamente corrige-os na chamada recursiva, visto que o resto da divisão de um número menor por um número maior será sempre o número menor.
