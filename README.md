@@ -782,3 +782,60 @@ int mdc(int x, int y){
 }
 ````
 - Não é necessário associar o maior número ao x. Pois, se o valor de x for menor que o valor de y, o algoritmo automaticamente corrige-os na chamada recursiva, visto que o resto da divisão de um número menor por um número maior será sempre o número menor.
+
+### Pré-processador e macros
+- Um código C, antes de ser compilado, passa por um pré-processador. O pré-processador de C reconhece determinadas diretivas e altera o código para então, enviá-lo ao compilador.
+- Uma dessas diretivas é o `include`. Ela é seguida por um nome de arquivo e o ré-processador a substitui pelo corpo do arquivo especificado. É como se o texto do arquivo incluído fizesse parte do código-fonte.
+- Quando o nome do arquivo estiver envolto por aspas, o pré-processador procura o arquivo primeiro no diretório local, e, caso não o encontre, o procura nos diretórios do `include` especificados para compilação.
+- Se o arquivo é colocado entre os sinais de menor e maior `<arquivo>`, o pré-processador não procura no diretório local (**os arquivos da biblioteca padrão de C devem ser incluídos com** `<>`).
+- Outra diretiva importante é a `define`, ela é uma diretiva de definição. O uso de diretivas de definição para **representar constantes simbólicas** é **recomendado**.
+````c
+# define PI 3.14159
+````
+- Outro uso possível para diretivas de definição é com **parâmetros**. É válido escrever, por exemplo:
+````c
+# define MAX(a,b) ((a) > (b) ? (a) : (b))
+
+v = 4.5;
+c = MAX(v, 3.0);
+// O compilador vê:
+v = 4.5;
+c = ((v) > (3.0) ? (v) : (3.0));
+````
+- Essas definições com parâmetros se chamam `macros`. É preciso ter cuidado na definição de `macros`. Mesmo um erro de sintaxe pode ser difícil de ser detectado, pois, o compilador indicará um erro na linha em que utiliza o `macro` e não na linha de definição do mesmo (onde efetivamente encontra-se o erro).
+- Outros efeitos de `macros` mal definidos podem ser ainda piores:
+````c
+/*Código com definição de macro INADEQUADA*/
+# include <stdio.h>
+
+# define DIF(a,b) a - b
+
+int main (void) {
+    printf("%d", 4 * DIF(5, 3));
+    return 0;
+}
+````
+- O resultado impresso é 17 e não 8. A razão é que o compilador apenas faz a substituição do macro, então fica da seguinte maneira: `printf("%d", 4 * 5 - 3);` e a multiplicação tem precedência sobre a subtração.
+- A definição correta deveria ser:
+````c
+/*Código com definição de macro APROPRIADA*/
+# include <stdio.h>
+
+# define DIF(a,b) ((a) - (b))
+
+int main (void) {
+    printf("%d", 4 * DIF(5, 3));
+    return 0;
+}
+````
+- Outro exemplo para ilustrar a diferença entre uma definição correta e uma não correta:
+````c
+// Forma inadequada:
+# define PROD(a,b) (a * b)
+printf("%d", PROD(3+4, 2)); // (3+4 * 2) = 11
+
+// Forma apropriada:
+# define PROD(a,b) ((a) * (b))
+printf("%d", PROD(3+4, 2)); // ((3 + 4) * 2) = 14
+````
+- Portanto, como regra básica para a definição de `macros`, é que devemos **envolver cada parâmetro**, além do `macro` como um todo, **com parênteses**.
